@@ -1,0 +1,29 @@
+name: nightly-settled-feed-verify
+on:
+  schedule:
+    - cron: "17 3 * * *"   # 03:17 UTC nightly
+  workflow_dispatch: {}
+permissions:
+  contents: write        # commit VERIFICATION.md only
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: fetch + pin + verify + VERIFICATION.md
+        env:
+          SAMPLE_URL: ${{ vars.SAMPLE_URL }}
+          EXPECTED_SHA256: ${{ vars.EXPECTED_SHA256 }}
+          FEED_URL: https://api.basedagents.ai/v1/tasks/settled
+          RPC_URL: https://mainnet.base.org
+        run: bash tools/run-verifier.sh
+      - name: commit VERIFICATION.md
+        run: |
+          git config user.name "nonsynthetic-agent"
+          git config user.email "agent@nonsynthetic.net"
+          git add VERIFICATION.md
+          git diff --cached --quiet || \
+            git commit -m "verify: $(date -u +%Y-%m-%d) settled-feed report"
+          git push
