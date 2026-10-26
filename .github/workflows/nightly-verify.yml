@@ -5,12 +5,15 @@ on:
   workflow_dispatch: {}
 permissions:
   contents: write        # commit VERIFICATION.md only
+concurrency:
+  group: settled-verify
+  cancel-in-progress: false
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with: { node-version: 20 }
       - name: fetch + pin + verify + VERIFICATION.md
         env:
@@ -20,10 +23,18 @@ jobs:
           RPC_URL: https://mainnet.base.org
         run: bash tools/run-verifier.sh
       - name: commit VERIFICATION.md
+        if: always()
         run: |
           git config user.name "nonsynthetic-agent"
           git config user.email "agent@nonsynthetic.net"
           git add VERIFICATION.md
-          git diff --cached --quiet || \
-            git commit -m "verify: $(date -u +%Y-%m-%d) settled-feed report"
+          git diff --cached --quiet && echo "no feed change — nothing to commit" && exit 0
+          git commit -m "verify: $(date -u +%Y-%m-%d) settled-feed report"
           git push
+          echo "verify_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+        id: commit
+      - name: report verify commit
+        if: always()
+        run: |
+          echo "verify-commit-sha: ${{ steps.commit.outputs.verify_sha }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "verify-commit-sha: ${{ steps.commit.outputs.verify_sha }}"
