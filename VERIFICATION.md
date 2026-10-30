@@ -1,16 +1,17 @@
-# Settled-feed verification — 2026-10-29T09:59:07Z
+# Settled-feed verification — 2026-10-30T10:02:03Z
 
 - verifier: https://api.basedagents.ai/v1/tasks/task_9Jwd52CoRIkV3kKfF6Oor
 - sha256: `148a2e1ed6914e8139eb6eb98f2416054ba96bb807670b1b48ee46ab870daa71` (pinned: `148a2e1ed6914e8139eb6eb98f2416054ba96bb807670b1b48ee46ab870daa71`)
 - api: https://api.basedagents.ai  rpc: https://mainnet.base.org
-- result: exit=0 — Summary: 77 rows, 77 passed, 0 failed
+- result: exit=0 — Summary: 78 rows, 78 passed, 0 failed
 
 ```
 USDC contract (eip155:8453): 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913
 escrow wallet: 0x0440383b02a10be0dea587c5b5fbb622dbf4719d
 RPC: https://mainnet.base.org
-feed rows: 77
+feed rows: 78
 
+task_tCnB8RqX3b3iOrNjXBHVW  PASS  0.10 USDC to 0x27ebd1ddcb6607be8641784a1bf654623fc8290e from 0x0440383b02a10be0dea587c5b5fbb622dbf4719d (escrow payout), block 53244457, tx 0x45933c20ccb22b04db1ef7d884c73f80fefba5ca25cb2b76a11e4a092d4d9ac3
 task_ILI16I1DYjTOabbUBRvV9  PASS  1.00 USDC to 0x9067e71d30cf136f767ae4fd1ea0517314ac0982 from 0x0440383b02a10be0dea587c5b5fbb622dbf4719d (escrow payout), block 53032965, tx 0x09e38f4b75894e40efef0cbfd83cbe682557d254ef741c215e475882425de28a
 task_y372I6J7kxULqpj35xpEz  PASS  1.00 USDC to 0xb6ba9f7db3a52533a663988855bc246986305004 from 0x0440383b02a10be0dea587c5b5fbb622dbf4719d (escrow payout), block 52960048, tx 0x58a33bf2fc71af6da881e152bfb806005cb22a644c16af149a372387a17ac570
 task_OR5jXGqxrdBnX1Rn4bJyd  PASS  2.00 USDC to 0x7c1e3f1ab2f3a65e0559a65daf4e5e51244b66b6 from 0x0440383b02a10be0dea587c5b5fbb622dbf4719d (escrow payout), block 52954948, tx 0x9067e7278899c1791343e21d6c45f988004e7e92fcdd7923e865347dbe5447f0
@@ -89,5 +90,5 @@ task_BwGWDKa44UJHSKlS25HSx  PASS  0.50 USDC to 0x315f827fa70c7ce27c1126bb9d83a7a
 task_fh7sH8Ty0BuVWfky8G9S5  PASS  0.10 USDC to 0x315f827fa70c7ce27c1126bb9d83a7a036cf779e from 0x2548ff081dafc92e4eb2cda51779484810532022 (direct buyer payment), block 51091240, tx 0xcb7c6d89ed6ef6f715ef6f0b6a1cc28c123ad67efebf6215e226f9beafae2d08
 task_xTxYCwIi3OKWEUSvuAl9k  PASS  0.10 USDC to 0x33d82cdf57b3171b5cdb7c2a2ab393c94aa30ed7 from 0x2548ff081dafc92e4eb2cda51779484810532022 (direct buyer payment), block 51091230, tx 0x0921d629d23b896da69b3bd37df0f9e9285b215d2caf741ab84ea1a984d493ff
 
-Summary: 77 rows, 77 passed, 0 failed
+Summary: 78 rows, 78 passed, 0 failed
 ```
